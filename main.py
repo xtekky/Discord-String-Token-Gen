@@ -9,6 +9,7 @@ class Gen:
         self.fails   = 0
     
     def start(self):
+        threading.Thread(target=self.title).start()
         while True:
             if threading.active_count() < self.threads:
                 threading.Thread(target=self.check_tucan).start()
@@ -45,7 +46,7 @@ class Gen:
                 with open('tokens.txt', 'a') as _:
                     _.write(f'{tucan}\n')
             else:
-                sys.stdout.write(f' [x] Invalid Token: {tucan}')
+                sys.stdout.write(f'\r [x] Invalid Token: {tucan}')
                 sys.stdout.flush()
 
         except:
